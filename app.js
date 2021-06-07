@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express=require("express");
 const app=express();
 const bodyParse=require("body-parser");
@@ -26,10 +27,10 @@ app.post("/",(req,res)=>{
         ]
     }
     let data=JSON.stringify(obj);
-    let url="https://us6.api.mailchimp.com/3.0/lists/9c7cbc8061";
+    let url="https://us6.api.mailchimp.com/3.0/lists/"+process.env.LIST_ID;
     let options={
         method:"POST",
-        auth:"Soumya1:ef9f935bdb262808f494327138edc638-us6"
+        auth:"Soumya1:"+process.env.APPID
     }
     const request=https.request(url,options,(resp)=>{
         if(resp.statusCode===200)
